@@ -1,4 +1,4 @@
-# Define the list of questions and answers using tuples
+# define the list of questions and answers using tuples
 questions = [
     ("What colors is the flag of the United Nations?", 
      ("Blue and Red", "Purple and Blue", "Blue and White", "Green and Blue"), 
@@ -47,13 +47,6 @@ questions = [
      1)
 ]
 
-def ask_question(question, options):
-    print(question)
-    for i, option in enumerate(options, start=1):
-        print(f"{i}. {option}")
-    answer = int(input("Enter your answer (1-4): "))
-    return answer
-
 def play_game():
     score = 0
     for question, options, correct_answer in questions:
@@ -61,9 +54,37 @@ def play_game():
         if user_answer == correct_answer:
             score += 1
 
-    percentage_score = (score / len(questions)) * 100
-    print(f"\nYour score: {score}/{len(questions)}")
+    percentage_score = (score / len(questions)) * 100 # calculate % score
+
+    print(f"\nYour score: {score}/{len(questions)}") # print the final score
     print(f"Percentage score: {percentage_score}%")
 
-# Start the game
+def ask_question(question, options):
+    print(question)  # prints the question and answer options
+    for i, option in enumerate(options, start=1):
+        print(f"{i}. {option}")
+    
+    # get user's answer
+    while True:
+        try:
+            answer = int(input("Enter your answer (1-4): "))
+            if 1 <= answer <= 4:
+                return answer
+            else:
+                print("Please enter a valid answer (1-4).")
+        except ValueError:
+            print("Please enter a valid answer (1-4).")
+
+# satart the game
 play_game()
+
+# ask if the user wants to play again
+while True:
+    play_again = input("Do you want to play again? (yes/no): ")
+    if play_again.lower() == "yes":
+        play_game()
+    elif play_again.lower() == "no":
+        print("Thanks for playing!")
+        break
+    else:
+        print("Please enter either yes or no.")
