@@ -96,16 +96,16 @@ def ask_question(question, options):
     print(question)
     for i, option in enumerate(options, start=1):
         print(f"{i}. {option}")
-    answer = int(input("Enter your answer (1-4): "))  # Prompt user for answer
+    answer = int(input("Enter your answer (1-4): ")) 
     return answer
 
 def play_game():
-    score = 0  # Initialize score to 0
+    score = 0 
     for question, option1, option2, option3, option4, correct_answer in questions:
-        user_answer = ask_question(question, [option1, option2, option3, option4])  # Ask the question
-        if user_answer == correct_answer:  # Check if user's answer matches the correct answer
-            score += 1  # Increment the score if answer is correct
+        user_answer = ask_question(question, [option1, option2, option3, option4])  
+        if user_answer == correct_answer:  
+            score += 1  
 
-    percentage_score = (score / len(questions)) * 100  # Calculate percentage score
+    percentage_score = (score / len(questions)) * 100  
     print(f"\nYour score: {score}/{len(questions)}")
     print(f"Percentage score: {percentage_score}%")
