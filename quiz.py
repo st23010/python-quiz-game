@@ -1,4 +1,4 @@
-# defining the list of x15 questions 
+# Define the list of questions and answers using tuples
 questions = [
     ("What colors is the flag of the United Nations?",
      "Blue and Red",
@@ -62,9 +62,9 @@ questions = [
      2),
     ("What is the highest mountain in New Zealand?",
      "Mount Ruapehu, Waikato",
-     "‘Aoraki’ Mount Cook, Canterbury",
+     "Aoraki / Mount Cook, Canterbury",
      "Mount Taranaki, Taranaki",
-     "‘Tititea’ Mount Aspiring, Otago",
+     "Tititea / Mount Aspiring, Otago",
      2),
     ("In which country is the Leaning Tower of Pisa located?",
      "France",
@@ -91,3 +91,21 @@ questions = [
      "Spring",
      1)
 ]
+
+def ask_question(question, options):
+    print(question)
+    for i, option in enumerate(options, start=1):
+        print(f"{i}. {option}")
+    answer = int(input("Enter your answer (1-4): "))  # Prompt user for answer
+    return answer
+
+def play_game():
+    score = 0  # Initialize score to 0
+    for question, option1, option2, option3, option4, correct_answer in questions:
+        user_answer = ask_question(question, [option1, option2, option3, option4])  # Ask the question
+        if user_answer == correct_answer:  # Check if user's answer matches the correct answer
+            score += 1  # Increment the score if answer is correct
+
+    percentage_score = (score / len(questions)) * 100  # Calculate percentage score
+    print(f"\nYour score: {score}/{len(questions)}")
+    print(f"Percentage score: {percentage_score}%")
